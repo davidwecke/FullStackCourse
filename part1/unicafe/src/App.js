@@ -8,11 +8,9 @@ const Button = ({onClick, text}) => {
   )
 }
 
-const Display = ({text, value}) => {
-  return (
-    <>
-      <p>{text} {value}</p>
-    </>
+const StatisticsLine = ({text, value, isPercent}) => {
+  return(
+    <div>{text} {value}{isPercent?'%':''}</div>
   )
 }
 
@@ -30,12 +28,12 @@ const Statistics = ({good, neutral, bad}) => {
   }
   return (
     <div>
-      good {good} <br/>
-      neutral {neutral} <br/>
-      bad {bad} <br/>
-      all {good+neutral+bad} <br/>
-      average {(good-bad)/(good+neutral+bad)} <br/>
-      positive {(good)/(good+neutral+bad)*100}% <br/>
+      <StatisticsLine text="good" value={good} />
+      <StatisticsLine text="neutral" value={neutral} />
+      <StatisticsLine text="bad" value={bad} />
+      <StatisticsLine text="all" value={(good-bad)/(good+neutral+bad)} />
+      <StatisticsLine text="average" value={(good-bad)/(good+neutral+bad)} />
+      <StatisticsLine text="positive" value={(good)/(good+neutral+bad)*100} isPercent={true} />
     </div>
   )
 }
