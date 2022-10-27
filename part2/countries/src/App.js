@@ -23,15 +23,19 @@ const Languages = ({languages}) => {
 }
 
 const Country = ({country}) => {
+  const [showDetails, setShowDetails] = useState(false)
+  const handleOnClick = () => {
+    setShowDetails(!showDetails)
+  }
   return (
     <div>
-      {country.name.common}
+      {country.name.common} <button onClick={handleOnClick}>{showDetails ? 'Hide' : 'Show'}</button>
+      {showDetails ? <CountryDetailed country={country}/> : ''}
     </div>
   )
 }
 
 const Flag = ({flagURL}) => {
-  console.log(flagURL)
   return (
     <div>
     <img src={flagURL}></img>
